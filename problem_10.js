@@ -11,7 +11,7 @@ function primeSum (maxNum) {
       return parseInt(x, 10);
     });
 
-    // Change the array value of any non-prime number 0
+    // Change the array value of any non-prime number to 0
     for (i = 0; i <= Math.sqrt(maxNum); i++) {
       for (j = i+1; j <= arrayMath.length-1; j++) {
         if (arrayMath[j] % arrayMath[i] === 0) {
