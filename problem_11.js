@@ -21,9 +21,7 @@ var nums = [[08, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50,
             [01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48]];//19
 
 function highestProduct() {
-    var horizontalMax = 0;
-    var verticalMax = 0;
-    var diagonalMax = 0;
+    var maxTest = 0;
 
     function horizontal() {
         for (x = 0; x < 20; x++) {
@@ -32,12 +30,12 @@ function highestProduct() {
                 for (z = 0; z < 4; z++) {
                     zTest *= nums[x][y+z];
                 }
-                if (zTest > horizontalMax) {
-                    horizontalMax = zTest; 
+                if (zTest > maxTest) {
+                    maxTest = zTest; 
                 }
             }
         }
-        console.log("The highest horizontal multiplied value is: " + horizontalMax);
+        console.log("The highest horizontal multiplied value is: " + maxTest);
     }
 
     function vertical() {
@@ -47,12 +45,12 @@ function highestProduct() {
                 for (z = 0; z < 4; z++) {
                     zTest *= nums[x+z][y];
                 }
-                if (zTest > verticalMax) {
-                    verticalMax = zTest;
+                if (zTest > maxTest) {
+                    maxTest = zTest;
                 }
             }
         }
-        console.log("The highest vertical multiplied value is: " + verticalMax);
+        console.log("The highest vertical multiplied value is: " + maxTest);
     }
 
     function diagonalLTR() {
@@ -62,12 +60,12 @@ function highestProduct() {
                 for (z = 0; z < 4; z++) {
                     zTest *= nums[x+z][y+z];
                 }
-                if (zTest > diagonalMax) {
-                    diagonalMax = zTest;
+                if (zTest > maxTest) {
+                    maxTest = zTest;
                 }
             }
         }
-        console.log("The highest LTR diagonal multiplied value is: " + diagonalMax); 
+        console.log("The highest LTR diagonal multiplied value is: " + maxTest); 
     }
 
     function diagonalRTL() {
@@ -77,12 +75,12 @@ function highestProduct() {
                 for (z = 0; z < 4; z++) {
                     zTest *= nums[x+z][y-z];
                 }
-                if (zTest > diagonalMax) {
-                    diagonalMax = zTest;
+                if (zTest > maxTest) {
+                    maxTest = zTest;
                 }
             }
         }
-        console.log("The highest RTL diagonal multiplied value is: " + diagonalMax); 
+        console.log("The highest RTL diagonal multiplied value is: " + maxTest); 
     }
 
     horizontal();
@@ -91,3 +89,4 @@ function highestProduct() {
     diagonalRTL();
 }
 highestProduct();
+
