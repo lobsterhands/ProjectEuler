@@ -22,6 +22,8 @@ var nums = [[08, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50,
 
 function highestProduct() {
     var horizontalMax = 0;
+    var verticalMax = 0;
+    var diagonalMax = 0;
 
     function horizontal() {
         for (x = 0; x < 20; x++) {
@@ -35,12 +37,57 @@ function highestProduct() {
                 }
             }
         }
-    console.log("The highest multiplied value is: " + horizontalMax);
+        console.log("The highest horizontal multiplied value is: " + horizontalMax);
+    }
+
+    function vertical() {
+        for (x = 0; x < 17; x++) {
+            for (y = 0; y < 17; y++) {
+                var zTest = 1;
+                for (z = 0; z < 4; z++) {
+                    zTest *= nums[x+z][y];
+                }
+                if (zTest > verticalMax) {
+                    verticalMax = zTest;
+                }
+            }
+        }
+        console.log("The highest vertical multiplied value is: " + verticalMax);
+    }
+
+    function diagonalLTR() {
+        for (x = 0; x < 17; x++) {
+            for (y = 0; y < 20; y++) {
+                var zTest = 1;
+                for (z = 0; z < 4; z++) {
+                    zTest *= nums[x+z][y+z];
+                }
+                if (zTest > diagonalMax) {
+                    diagonalMax = zTest;
+                }
+            }
+        }
+        console.log("The highest LTR diagonal multiplied value is: " + diagonalMax); 
+    }
+
+    function diagonalRTL() {
+        for (x = 0; x < 17; x++) {
+            for (y = 19; y >= 0; y--) {
+                var zTest = 1;
+                for (z = 0; z < 4; z++) {
+                    zTest *= nums[x+z][y-z];
+                }
+                if (zTest > diagonalMax) {
+                    diagonalMax = zTest;
+                }
+            }
+        }
+        console.log("The highest RTL diagonal multiplied value is: " + diagonalMax); 
     }
 
     horizontal();
-    // vertical();
-
+    vertical();
+    diagonalLTR();
+    diagonalRTL();
 }
 highestProduct();
-// console.log(nums[2][0]); // equals 81
