@@ -1,17 +1,17 @@
 var getTriangleNumber = function(n) {
-    return (n * (n+1)) / 2; 
+    return (n * (n+1)) / 2;
 };
 
 var getPrimeFactors = function(n) {
     var array = [];
     for (var i = 2; i <= n; /* dynamic */)
         {
-            if (n % i === 0)
-            {               
+            if (n % i === 0) // If number divides evenly into i
+            {
                 array.push(i);  // Num can be pushed multiple times
-                n /= i; 
+                n /= i;  // Update number
             }
-            else 
+            else
             {
                 i += 1;
             }
@@ -19,17 +19,17 @@ var getPrimeFactors = function(n) {
     return array;
 };
 
-var getCountOfRepeatingNumbers = function(array) {
-    var repeatingCount = 2;
+var getDivisorCountOfRepeatingNumbers = function(array) {
+    var repeatingCount = 2; // start at 2 because n => n + 1 divisors: [ 2 2 ] => [ 1 2 4 ]
     var countArray = [];
     var countArrayIndex = 0;
     for (var i = 0; i < array.length; i++) {
-        if (array[i] === array[i+1]) {
+        if (array[i] === array[i+1]) { // For each instance of a repeating digit
             repeatingCount++;
-        } else {
-            countArray[countArrayIndex] = repeatingCount;
-            repeatingCount = 2;
-            countArrayIndex++;
+        } else { // When a non-repeating digit occurs:
+            countArray[countArrayIndex] = repeatingCount; // record the current divisor count
+            repeatingCount = 2; // reset repeatingCount
+            countArrayIndex++; // increment the index counter
         }
     }
     return countArray;
@@ -38,25 +38,25 @@ var getCountOfRepeatingNumbers = function(array) {
 var getNumberOfDivisors = function(array) {
     var numberOfDivisors = 1;
     for (var i = 0; i < array.length; i++) {
-        numberOfDivisors *= array[i];
+        numberOfDivisors *= array[i]; // Multiply together the individual divisor count values
     }
-    return numberOfDivisors;
+    return numberOfDivisors; // return product of all divisor counts
 };
 
 var answerFound = false;
 var triangleNumber = 0;
 var primeFactors = [];
 
-for (var i = 1; ; i++) {
+for (var i = 1; /* dynamic */; i++) {
     triangleNumber = getTriangleNumber(i);
-    var numberOfDivisors = getNumberOfDivisors(getCountOfRepeatingNumbers(getPrimeFactors(triangleNumber)));
-    
+    var numberOfDivisors = getNumberOfDivisors(getDivisorCountOfRepeatingNumbers(getPrimeFactors(triangleNumber)));
+
     if (numberOfDivisors > 500) {
         answerFound = true;
     }
     if (answerFound) {
         console.log(triangleNumber);
         console.log(numberOfDivisors);
-        break;
+        break; // End the program
     }
 }
