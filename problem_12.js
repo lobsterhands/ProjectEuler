@@ -43,7 +43,6 @@ var getNumberOfDivisors = function(array) {
     return numberOfDivisors; // return product of all divisor counts
 };
 
-var answerFound = false;
 var triangleNumber = 0;
 var primeFactors = [];
 
@@ -52,9 +51,6 @@ for (var i = 1; /* dynamic */; i++) {
     var numberOfDivisors = getNumberOfDivisors(getDivisorCountOfRepeatingNumbers(getPrimeFactors(triangleNumber)));
 
     if (numberOfDivisors > 500) {
-        answerFound = true;
-    }
-    if (answerFound) {
         console.log(triangleNumber);
         console.log(numberOfDivisors);
         break; // End the program
